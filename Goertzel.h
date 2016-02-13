@@ -35,13 +35,22 @@ class Goertzel
     Goertzel(float,float);
 	void sample(int);
 	float detect();
+	void ChangeParameters(float,float,float);
 
   // library-accessible "private" interface
   private:
 	void GetRealImag(float*,float*);
 	void ProcessSample(int);
 	void ResetGoertzel(void);
-	
+
+	float _SAMPLING_FREQUENCY;
+	float _TARGET_FREQUENCY;
+	int _N;
+	float coeff;
+	float Q1;
+	float Q2;
+
+	int testData[MAXN];
 };
 
 #endif

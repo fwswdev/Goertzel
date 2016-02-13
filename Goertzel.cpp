@@ -21,14 +21,6 @@
 // include this library's description file
 #include "Goertzel.h"
 
-float _SAMPLING_FREQUENCY;
-float _TARGET_FREQUENCY;
-int _N;
-float coeff;
-float Q1;
-float Q2;
-
-int testData[MAXN];
 
 Goertzel::Goertzel(float TARGET_FREQUENCY, float N)
 {
@@ -41,7 +33,12 @@ Goertzel::Goertzel(float TARGET_FREQUENCY, float N)
 
 Goertzel::Goertzel(float TARGET_FREQUENCY, float N, float SAMPLING_FREQUENCY)
 {
-  
+  ChangeParameters(TARGET_FREQUENCY,N,SAMPLING_FREQUENCY);
+}
+
+
+void Goertzel::ChangeParameters(float TARGET_FREQUENCY, float N, float SAMPLING_FREQUENCY)
+{
   _SAMPLING_FREQUENCY=SAMPLING_FREQUENCY;	//on 16mhz, ~8928.57142857143, on 8mhz ~44444
   _TARGET_FREQUENCY=TARGET_FREQUENCY; //should be integer of SAMPLING_RATE/N
   if(N>MAXN){
@@ -54,7 +51,7 @@ Goertzel::Goertzel(float TARGET_FREQUENCY, float N, float SAMPLING_FREQUENCY)
 
   coeff = 2.0 * cos(omega);
 
-  ResetGoertzel();
+  ResetGoertzel();	
 }
 
 
